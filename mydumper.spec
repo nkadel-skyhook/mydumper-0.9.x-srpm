@@ -1,15 +1,24 @@
 # norootforbuild
 
-Name:				mydumper
-Version:			0.6.2
-Release:			7.1
-Summary:			How MySQL DBA & support engineer would imagine 'mysqldump'
+Name:		mydumper
+Version:	0.6.2
+Release:	0.1%{?dist}
+Summary:	How MySQL DBA & support engineer would imagine 'mysqldump'
 Source:        http://launchpad.net/%{name}/0.6/%{version}/+download/%{name}-%{version}.tar.gz
-URL:			   https://launchpad.net/mydumper
-Group:			Applications/Databases
-License:			GNU General Public License version 3 (GPL v3)
-BuildRoot:		%{_tmppath}/build-%{name}-%{version}
-BuildRequires: gcc gcc-c++ glib2-devel glibc-devel libmysqlclient-devel make pcre-devel zlib-devel cmake
+URL:		https://launchpad.net/mydumper
+Group:		Applications/Databases
+License:	GNU General Public License version 3 (GPL v3)
+BuildRequires: gcc
+BuildRequires: gcc-c++
+BuildRequires: glib2-devel
+BuildRequires: glibc-devel
+# Change for RHEL
+#BuildRequires: libmysqlclient-devel
+BuildRequires: mysql-devel
+BuildRequires: make
+BuildRequires: pcre-devel
+BuildRequires: zlib-devel
+BuildRequires: cmake
 
 %description
 mydumper is complement to mysqldump, for MySQL data dumping, providing:
@@ -34,20 +43,20 @@ Authors:
 	Domas Mituzas <domas@dammit.lt>
 	Mark Leith <mark.leith@sun.com>
 
-%debug_package
 %prep
-%setup -q
+%setup
 
 %build
-cmake .
+cmake -DCMAKE_INSTALL_PREFIX="%{_prefix}" .
 %__make OPTFLAGS="%{optflags}"
 
 %install
-%__mkdir -p %{buildroot}/%{_bindir}
-%__install -m 755 %{name} %{buildroot}/%{_bindir}
+rm -rf ${RPM_BUILD_ROOT}
+%__mkdir -p ${RPM_BUILD_ROOT}/%{_bindir}
+%__install -m 755 %{name} ${RPM_BUILD_ROOT}/%{_bindir}
 
 %clean
-%__rm -rf "%{buildroot}"
+%__rm -rf "${RPM_BUILD_ROOT}"
 
 %files
 %defattr(-,root,root)
