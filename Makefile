@@ -5,7 +5,7 @@
 # Assure that sorting is case sensitive
 LANG=C
 
-#MOCKS+=epel-7-x86_64
+MOCKS+=epel-7-x86_64
 MOCKS+=epel-6-x86_64
 
 SPEC := `ls *.spec | head -1`
