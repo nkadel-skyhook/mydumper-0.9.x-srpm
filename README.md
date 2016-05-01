@@ -1,11 +1,19 @@
+Tools to build mydumpre 0.9.x SRPM
 
-Raid Remi Famillecollet's repos
+mydumper is published by Percona, and is available as binary RPMs from
+them. I've been unable to download SRPMs for that. Versions have been
+published by Remi Colletee and by LenzGr on the OpenSuSE project, and
+I've based this port on LenGr's work at:
 
-http://rpms.famillecollet.com/store/mydumper/0.2.3/
+* http://download.opensuse.org/repositories/home:/LenzGr/SLE_11/src/
 
-Current version of myndumper source:
+To build RPMs locally, use:
 
-#    https://launchpad.net/mydumper/0.91/0.91/+download/mydumper-0.9.1.tar.gz
-https://launchpadlibrarian.net/225370879/mydumper-0.9.1.tar.gz
+* make build
 
- http://download.opensuse.org/repositories/home:/LenzGr/SLE_11/src/
+To build with mock, use:
+
+* make
+
+
+	Nico Kadel-Gariaq <nkadel@skyhookwireless.com>
