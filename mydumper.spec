@@ -1,7 +1,7 @@
 # norootforbuild
 
 Name:		mydumper
-Version:	0.6.2
+Version:	0.9.1
 Release:	0.1%{?dist}
 Summary:	How MySQL DBA & support engineer would imagine 'mysqldump'
 Source:        http://launchpad.net/%{name}/0.6/%{version}/+download/%{name}-%{version}.tar.gz
@@ -64,6 +64,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_bindir}/%{name}
 
 %changelog
+* Sat Apr 30 2016 nkadel@skyhookwireless.com - 0.9.1-0.1
+- Update to 0.9.1
+- Adapt for RHEL compilation
 * Sat May 30 2015 lenz@grimmer.com
 - Update to 0.6.2
 * Thu Mar 18 2010 lenz@grimmer.com
