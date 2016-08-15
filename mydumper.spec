@@ -2,9 +2,9 @@
 
 Name:		mydumper
 Version:	0.9.1
-Release:	0.1%{?dist}
+Release:	0.2%{?dist}
 Summary:	How MySQL DBA & support engineer would imagine 'mysqldump'
-Source:        http://launchpad.net/%{name}/0.6/%{version}/+download/%{name}-%{version}.tar.gz
+Source:		http://launchpad.net/%{name}/0.9/%{version}/+download/%{name}-%{version}.tar.gz
 URL:		https://launchpad.net/mydumper
 Group:		Applications/Databases
 License:	GNU General Public License version 3 (GPL v3)
@@ -64,6 +64,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_bindir}/%{name}
 
 %changelog
+* Mon Aug 15 2016 nkadel@skyhook.com - 0.9.1-0.2
+- Correct Source URL
+
 * Sat Apr 30 2016 nkadel@skyhookwireless.com - 0.9.1-0.1
 - Update to 0.9.1
 - Adapt for RHEL compilation
