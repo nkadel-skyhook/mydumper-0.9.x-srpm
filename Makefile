@@ -5,14 +5,20 @@
 # Assure that sorting is case sensitive
 LANG=C
 
-MOCKS+=fedora-23-x86_64
+MOCKS+=fedora-24-x86_64
 MOCKS+=epel-7-x86_64
 MOCKS+=epel-6-x86_64
 
 SPEC := `ls *.spec | head -1`
 PKGNAME := "`ls *.spec | head -1 | sed 's/.spec$$//g'`"
 
-all:: verifyspec $(MOCKS)
+NAME := mydumper
+VERSION := 0.9.1
+MAJORVERISON := 0.9
+
+TARBALL := $(NAME)-$(VERSION).tar.gz
+
+all:: verifyspec $(TARBALL) $(MOCKS)
 
 # Oddness to get deduced .spec file verified
 verifyspec:: FORCE
@@ -20,6 +26,11 @@ verifyspec:: FORCE
 	    echo Error: SPEC file $(SPEC) not found, exiting; \
 	    exit 1; \
 	fi
+
+.PHONY: tarball
+tarball: $(TARBALL)
+$(TARBALL):
+	wget   http://launchpad.net/$(NAME)/$(MAJORVERSION)/$(MINORVERSION)/+download/$(TARBALL)
 
 srpm:: verifyspec FORCE
 	@echo "Building SRPM with $(SPEC)"
@@ -58,5 +69,6 @@ clean::
 
 realclean distclean:: clean
 	rm -f *.src.rpm
+	rm -f $(TARBALL)
 
 FORCE:
