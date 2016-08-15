@@ -14,7 +14,7 @@ PKGNAME := "`ls *.spec | head -1 | sed 's/.spec$$//g'`"
 
 NAME := mydumper
 VERSION := 0.9.1
-MAJORVERISON := 0.9
+MAJORVERSION := 0.9
 
 TARBALL := $(NAME)-$(VERSION).tar.gz
 
@@ -30,7 +30,7 @@ verifyspec:: FORCE
 .PHONY: tarball
 tarball: $(TARBALL)
 $(TARBALL):
-	wget   http://launchpad.net/$(NAME)/$(MAJORVERSION)/$(MINORVERSION)/+download/$(TARBALL)
+	wget 'http://launchpad.net/$(NAME)/$(MAJORVERSION)/$(VERSION)/+download/$(TARBALL)'
 
 srpm:: verifyspec FORCE
 	@echo "Building SRPM with $(SPEC)"
