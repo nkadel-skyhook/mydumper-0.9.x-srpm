@@ -19,6 +19,8 @@ BuildRequires: make
 BuildRequires: pcre-devel
 BuildRequires: zlib-devel
 BuildRequires: cmake
+# Change for RHEL 5
+BuildRoot: %{_tmppath}/%{name}-root
 
 %description
 mydumper is complement to mysqldump, for MySQL data dumping, providing:
@@ -46,17 +48,19 @@ Authors:
 %prep
 %setup
 
+echo buildroot: %{buildroot}
+
 %build
 cmake -DCMAKE_INSTALL_PREFIX="%{_prefix}" .
 %__make OPTFLAGS="%{optflags}"
 
 %install
-rm -rf ${RPM_BUILD_ROOT}
-%__mkdir -p ${RPM_BUILD_ROOT}/%{_bindir}
-%__install -m 755 %{name} ${RPM_BUILD_ROOT}/%{_bindir}
+rm -rf %{buildroot}
+%__mkdir -p %{buildroot}/%{_bindir}
+%__install -m 755 %{name} %{buildroot}/%{_bindir}
 
 %clean
-%__rm -rf "${RPM_BUILD_ROOT}"
+%__rm -rf "%{buildroot}"
 
 %files
 %defattr(-,root,root)
@@ -64,6 +68,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_bindir}/%{name}
 
 %changelog
+* Fri Oct 14 2016 nkadel@skyhook.com - 0.9.1-0.3
+- Switch to "buildroot" for RHEL 5 compilation
+
 * Mon Aug 15 2016 nkadel@skyhook.com - 0.9.1-0.2
 - Correct Source URL
 
