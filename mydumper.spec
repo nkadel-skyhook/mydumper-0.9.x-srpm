@@ -2,7 +2,7 @@
 
 Name:		mydumper
 Version:	0.9.1
-Release:	0.3%{?dist}
+Release:	0.4%{?dist}
 Summary:	How MySQL DBA & support engineer would imagine 'mysqldump'
 Source:		http://launchpad.net/%{name}/0.9/%{version}/+download/%{name}-%{version}.tar.gz
 URL:		https://launchpad.net/mydumper
