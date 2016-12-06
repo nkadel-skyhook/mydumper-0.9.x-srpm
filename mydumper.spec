@@ -2,7 +2,7 @@
 
 Name:		mydumper
 Version:	0.9.1
-Release:	0.2%{?dist}
+Release:	0.3%{?dist}
 Summary:	How MySQL DBA & support engineer would imagine 'mysqldump'
 Source:		http://launchpad.net/%{name}/0.9/%{version}/+download/%{name}-%{version}.tar.gz
 URL:		https://launchpad.net/mydumper
@@ -57,7 +57,10 @@ cmake -DCMAKE_INSTALL_PREFIX="%{_prefix}" .
 %install
 rm -rf %{buildroot}
 %__mkdir -p %{buildroot}/%{_bindir}
-%__install -m 755 %{name} %{buildroot}/%{_bindir}
+#%__install -m 755 %{name} %{buildroot}/%{_bindir}
+# Update installation procedure manually
+%__install -m 755 mydumper %{buildroot}/%{_bindir}
+%__install -m 755 myloader %{buildroot}/%{_bindir}
 
 %clean
 %__rm -rf "%{buildroot}"
@@ -65,9 +68,14 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc README
-%{_bindir}/%{name}
+#%{_bindir}/%{name}
+%{_bindir}/mydumper
+%{_bindir}/myloader
 
 %changelog
+* Tue Dec 06 2016 nkadel@skyhook.com - 0.9.1-0.4
+- Add specific deployment of mydumper and myloader
+
 * Fri Oct 14 2016 nkadel@skyhook.com - 0.9.1-0.3
 - Switch to "buildroot" for RHEL 5 compilation
 
