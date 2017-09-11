@@ -1,8 +1,8 @@
 # norootforbuild
 
 Name:		mydumper
-Version:	0.9.1
-Release:	0.4%{?dist}
+Version:	0.9.3
+Release:	0.1%{?dist}
 Summary:	How MySQL DBA & support engineer would imagine 'mysqldump'
 Source:		http://launchpad.net/%{name}/0.9/%{version}/+download/%{name}-%{version}.tar.gz
 URL:		https://launchpad.net/mydumper
@@ -73,6 +73,9 @@ rm -rf %{buildroot}
 %{_bindir}/myloader
 
 %changelog
+* Mon Sep 11 2017 nkadel@skyhook.com - 0.9.3-0.1
+- Update to 0.9.3
+
 * Tue Dec 06 2016 nkadel@skyhook.com - 0.9.1-0.4
 - Add specific deployment of mydumper and myloader
 

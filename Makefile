@@ -5,17 +5,18 @@
 # Assure that sorting is case sensitive
 LANG=C
 
-MOCKS+=fedora-25-x86_64
+#MOCKS+=fedora-25-x86_64
+MOCKS+=fedora-26-x86_64
 MOCKS+=epel-7-x86_64
 MOCKS+=epel-6-x86_64
-MOCKS+=epel-5-x86_64
+#MOCKS+=epel-5-x86_64
 
 SPEC := `ls *.spec | head -1`
 PKGNAME := "`ls *.spec | head -1 | sed 's/.spec$$//g'`"
 
 NAME := mydumper
-VERSION := 0.9.1
-MAJORVERSION := 0.9
+VERSION := 0.9.3
+MAJORVERSION := 0.1
 
 TARBALL := $(NAME)-$(VERSION).tar.gz
 
@@ -31,7 +32,7 @@ verifyspec:: FORCE
 .PHONY: tarball
 tarball: $(TARBALL)
 $(TARBALL):
-	wget 'http://launchpad.net/$(NAME)/$(MAJORVERSION)/$(VERSION)/+download/$(TARBALL)'
+	[ -s $@ ] || exit 1
 
 srpm:: verifyspec FORCE
 	@echo "Building SRPM with $(SPEC)"
